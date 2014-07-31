@@ -126,6 +126,8 @@ Vagrant.configure("2") do |config|
 			}
 		}
 	end
+
+	config.vm.provision :shell, inline: "sudo sh -c 'if [ ! -e /opt/phabricator/.done ]; then /etc/init.d/php5-fpm restart ; touch /opt/phabricator/.done ; fi;'"
     end
 
 end
