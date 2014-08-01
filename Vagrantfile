@@ -128,6 +128,8 @@ Vagrant.configure("2") do |config|
 	end
 
 	config.vm.provision :shell, inline: "sudo sh -c 'if [ ! -e /opt/phabricator/.done ]; then /etc/init.d/php5-fpm restart ; touch /opt/phabricator/.done ; fi;'"
+	config.vm.provision :shell, inline: "sudo sh -c 'mkdir -p /var/repo && chown www-data:www-data /var/repo'"
+	config.vm.provision :shell, inline: "sudo sh -c 'cd /opt/phabricator/phabricator && ./bin/phd start'"
     end
 
 end
